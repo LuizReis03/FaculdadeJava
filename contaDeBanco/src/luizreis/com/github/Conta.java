@@ -1,46 +1,78 @@
 package luizreis.com.github;
 
-public class Conta {
+import luizreis.com.github.projeto.banco.interfaces.IDetalhesConta;
+
+public class Conta implements IDetalhesConta {
 	
-	//atributos
-	public String nome;
+	//ATRIBUTOS
+	private String nome;
+	private Double saldo;
+	private String numConta;
 	private String tipoConta;
-	protected Double saldo;
-	public String numConta;
-	public Integer saquesDisponiveis;
 	
-	//construtor
-	public Conta(String nome, String tipoConta, Double saldo, String numConta, Integer saquesDisponiveis) {		
+	//GETS
+	public String getNome() {
+		return nome;
+	}
+	
+	public String getTipoConta() {
+		return tipoConta;
+	}
+
+	public Double getSaldo() {
+		return saldo;
+	}
+
+	public String getNumConta() {
+		return numConta;
+	}
+
+	
+	//SETS
+	public void setSaldo(Double saldo) {
+		this.saldo = saldo;
+	}
+
+	public void setNumConta(String numConta) {
+		this.numConta = numConta;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setTipoConta(String tipoConta) {
+		this.tipoConta = tipoConta;
+	}
+
+	//CONSTRUTOR
+	public Conta(String nome, Double saldo, String numConta, String tipoConta) {		
+		
 		this.tipoConta = tipoConta;
 		this.nome = nome;
 		this.saldo = saldo;
-		if (this.tipoConta != "Pf" && this.tipoConta != "Pj" && this.tipoConta != "Pr") {
-			System.out.println("Erro: Os tipos de contas aceitos são apenas Pf, Pj ou Pr");
-		}
+	
 	}
 	
-	//método deposito
+	//MÉTODO DEPOSITO
 	public double Deposito(double deposito) {
-		if (this.tipoConta == "Pf") {
-			double porcentagem = deposito * 0.01;
-			deposito = deposito - porcentagem;
-		}else {
-			double porcentagem = deposito * 0.02;
-			deposito = deposito - porcentagem;
-		}
 		return this.saldo = this.saldo + deposito;
 	}
 	
-	//método saque
+	//METÓDO SAQUE
 		public void Saque(Double saque) {
-			if (this.tipoConta == "Pf" && saque > this.saldo) {
-				System.out.println("Sua conta é do tipo pessoa física, não é permitido sacar mais do que possui!");
-			}else {
-				this.saldo = this.saldo - saque;
-			}
-		}
+			this.saldo = this.saldo - saque;
+	}
 		
-		public void extrato() {
-			System.out.println(this.saldo + " Saldo atual");
-		}
+	//MÉTODO DA INTERFACE - DETALHES 
+	@Override
+	public void detalhes() {
+
+		System.out.println("Conta " + this.getNumConta());
+		System.out.println("Titular " + this.getNome());
+		System.out.println("Tipo " + this.getTipoConta());
+		System.out.println("Saldo " + this.getSaldo());
+		
+	}
+		
 }

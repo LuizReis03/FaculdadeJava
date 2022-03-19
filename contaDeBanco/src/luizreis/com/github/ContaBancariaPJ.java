@@ -1,21 +1,22 @@
 package luizreis.com.github;
 
 public class ContaBancariaPJ extends Conta {
-	public ContaBancariaPJ(String nome, String tipoConta, Double saldo, String numConta, Integer saquesDisponiveis) {
-		super(nome, tipoConta, saldo, numConta, saquesDisponiveis);
+	public ContaBancariaPJ(String nome, Double saldo, String numConta, String tipoConta) {
+		super(nome, saldo, numConta, tipoConta);
 	}
 	
-	
-	public void sacar(Double valor) {
-		System.out.println("sacar dentro classe filha");
-		Double taxa = 0.02;
-		if (this.saquesDisponiveis >= 1) {
-			this.saldo -= valor;
-			--this.saquesDisponiveis;
-		} else {
-			Double desconto = valor * taxa;
-			this.saldo -= (valor + desconto);
-		}
-		
+	@Override
+	public void Saque(Double saque) {
+		double porcentagem = saque * 0.02;
+		saque += porcentagem;
+		super.Saque(saque);
 	}
-}
+	
+	@Override
+	public double Deposito(double deposito) {
+		double porcentagem = deposito * 0.02;
+		deposito -= porcentagem;
+		return super.Deposito(deposito);
+	}
+	
+} 

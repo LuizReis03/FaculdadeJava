@@ -3,18 +3,14 @@ package luizreis.com.github;
 public class Aplicativo {
 
 	public static void main(String[] args) {
-		//cria novas contas
-		Conta contaLuiz = new Conta("Pf", "Luiz Henrique", 0.0);
-		Conta contaEmp = new Conta("Pj", "Bosch", 0.0);
 		
-		//aplica os métodos de depósito
-		contaLuiz.Deposito(36500.00);
-		contaEmp.Deposito(36500.00);
+		Conta contaEmp = new ContaBancariaPJ("Bosch", 0.0, "175156", "Pj");
+		Conta contaPessoal = new ContaBancariaPF("Luiz", 100.0, "175656", "Pf");
+		Conta contaRural = new ContaBancariaPR("Rural", 100.0, "168656", "Pr", "Pequeno Porte");
 		
-		//aplica os métodos de saque
-		contaLuiz.Saque(40200.00);
-		contaEmp.Saque(40200.00);
-
+		contaRural.Saque(30.0);
+		contaRural.detalhes();
+		
 
 	}
 
