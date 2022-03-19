@@ -3,17 +3,19 @@ package luizreis.com.github;
 public class Conta {
 	
 	//atributos
-	String tipoConta;
-	String nome;
-	Double saldo;
+	public String nome;
+	private String tipoConta;
+	protected Double saldo;
+	public String numConta;
+	public Integer saquesDisponiveis;
 	
 	//construtor
-	public Conta(String tipoConta, String nome, Double saldo) {		
+	public Conta(String nome, String tipoConta, Double saldo, String numConta, Integer saquesDisponiveis) {		
 		this.tipoConta = tipoConta;
 		this.nome = nome;
 		this.saldo = saldo;
-		if (this.tipoConta != "Pf" && this.tipoConta != "Pj") {
-			System.out.println("Erro: Os tipos de contas aceitos são apenas Pf ou Pj");
+		if (this.tipoConta != "Pf" && this.tipoConta != "Pj" && this.tipoConta != "Pr") {
+			System.out.println("Erro: Os tipos de contas aceitos são apenas Pf, Pj ou Pr");
 		}
 	}
 	
